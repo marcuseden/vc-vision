@@ -9,7 +9,9 @@ export async function transcribeAudio(
   audioBuffer: Buffer,
   options?: { language?: string; prompt?: string }
 ): Promise<string> {
-  const file = new File([audioBuffer], 'audio.m4a', { type: 'audio/m4a' })
+  // Convert Buffer to Blob for File constructor
+  const blob = new Blob([audioBuffer], { type: 'audio/m4a' })
+  const file = new File([blob], 'audio.m4a', { type: 'audio/m4a' })
   
   const transcription = await openai.audio.transcriptions.create({
     file: file,
