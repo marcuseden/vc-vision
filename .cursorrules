@@ -13,6 +13,8 @@
 - Never bypass the ORM
 - Always handle errors gracefully
 - Use transactions for multi-step operations
+- **NEVER use test data, seed scripts, or mock data**
+- Work with real production data only
 
 ## API Design
 - All API routes in /app/api
@@ -49,4 +51,10 @@
 - Test API routes
 - Test critical business logic
 - Manual testing for UI flows
+- **NO test data or seed scripts - production data only**
+
+## Development Philosophy
+- Build for real-world use from day one
+- No placeholder or dummy data
+- Every feature must work with actual user data
 
