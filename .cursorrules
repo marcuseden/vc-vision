@@ -1,0 +1,52 @@
+# VC Copilot Project Rules
+
+## Code Style
+- Use TypeScript for all new files
+- Follow Next.js 14 App Router conventions
+- Use 'use client' directive only when necessary (client components)
+- Prefer server components by default
+- Use Tailwind CSS for styling
+- Follow shadcn/ui component patterns
+
+## Database
+- Use Prisma for all database operations
+- Never bypass the ORM
+- Always handle errors gracefully
+- Use transactions for multi-step operations
+
+## API Design
+- All API routes in /app/api
+- Return proper HTTP status codes
+- Always return JSON
+- Include error messages in responses
+- Validate input with Zod or similar
+
+## AI Agents
+- Keep prompts in agent files, not scattered
+- Log all AI calls for debugging
+- Handle rate limits gracefully
+- Cache results when appropriate
+
+## Security
+- Never commit API keys
+- Use environment variables
+- Validate all user input
+- Sanitize AI outputs before rendering
+
+## Performance
+- Use Next.js Image component for images
+- Implement loading states
+- Show progress for long operations
+- Use React Query for data fetching
+
+## Components
+- Keep components small and focused
+- Use TypeScript interfaces for props
+- Include loading and error states
+- Make components reusable
+
+## Testing
+- Test API routes
+- Test critical business logic
+- Manual testing for UI flows
+

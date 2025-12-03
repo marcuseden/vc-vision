@@ -1,0 +1,259 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("analyst") // analyst, partner, admin
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  meetings   Meeting[]
+  comments   Comment[]
+  sharedWith MeetingShare[]
+}
+
+model Deal {
+  id          String   @id @default(cuid())
+  companyName String
+  website     String?
+  stage       String? // pre-seed, seed, series-a, etc.
+  sector      String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  meetings Meeting[]
+  competitors Competitor[]
+  insights    Insight[]
+}
+
+model Meeting {
+  id            String   @id @default(cuid())
+  dealId        String
+  userId        String
+  title         String
+  date          DateTime
+  duration      Int? // in seconds
+  status        String   @default("in_progress") // in_progress, completed, failed
+  transcriptUrl String?
+  audioUrl      String?
+  summary       String?
+  keyTakeaways  String[]
+  nextSteps     String[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  deal         Deal            @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  user         User            @relation(fields: [userId], references: [id])
+  slides       Slide[]
+  questions    Question[]
+  claims       Claim[]
+  transcript   TranscriptSegment[]
+  followUps    FollowUp[]
+  emails       Email[]
+  sharedWith   MeetingShare[]
+  comments     Comment[]
+
+  @@index([dealId])
+  @@index([userId])
+  @@index([date])
+}
+
+model Slide {
+  id          String   @id @default(cuid())
+  meetingId   String
+  slideNumber Int
+  imageUrl    String?
+  text        String?
+  timestamp   DateTime?
+  createdAt   DateTime @default(now())
+
+  meeting   Meeting    @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  claims    Claim[]
+  questions Question[]
+  insights  Insight[]
+
+  @@unique([meetingId, slideNumber])
+  @@index([meetingId])
+}
+
+model TranscriptSegment {
+  id        String   @id @default(cuid())
+  meetingId String
+  speaker   String   @default("founder") // founder, vc, system
+  text      String
+  timestamp Float // seconds from start
+  createdAt DateTime @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  claims  Claim[]
+
+  @@index([meetingId])
+}
+
+model Claim {
+  id          String   @id @default(cuid())
+  meetingId   String
+  slideId     String?
+  segmentId   String?
+  claimText   String
+  claimType   String // metric, market_size, competitor, traction, financial
+  isVerified  Boolean  @default(false)
+  verifiedBy  String? // source of verification
+  confidence  Float? // 0-1 confidence score
+  notes       String?
+  createdAt   DateTime @default(now())
+
+  meeting  Meeting            @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  slide    Slide?             @relation(fields: [slideId], references: [id], onDelete: Cascade)
+  segment  TranscriptSegment? @relation(fields: [segmentId], references: [id], onDelete: Cascade)
+  research ResearchResult[]
+
+  @@index([meetingId])
+  @@index([slideId])
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  meetingId   String
+  slideId     String?
+  questionText String
+  category    String // verification, expansion, risk, opportunity
+  priority    Int      @default(0) // higher = more important
+  asked       Boolean  @default(false)
+  askedAt     DateTime?
+  answer      String?
+  createdAt   DateTime @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  slide   Slide?  @relation(fields: [slideId], references: [id], onDelete: Cascade)
+
+  @@index([meetingId])
+  @@index([slideId])
+}
+
+model ResearchResult {
+  id          String   @id @default(cuid())
+  claimId     String
+  source      String
+  data        Json // flexible structure for different research types
+  summary     String?
+  createdAt   DateTime @default(now())
+
+  claim Claim @relation(fields: [claimId], references: [id], onDelete: Cascade)
+
+  @@index([claimId])
+}
+
+model Competitor {
+  id           String   @id @default(cuid())
+  dealId       String
+  name         String
+  website      String?
+  fundingStage String?
+  totalFunding Float?
+  lastRound    String?
+  niche        String?
+  revenue      Float? // estimated
+  employees    Int?
+  founded      Int?
+  description  String?
+  moat         String?
+  createdAt    DateTime @default(now())
+
+  deal Deal @relation(fields: [dealId], references: [id], onDelete: Cascade)
+
+  @@index([dealId])
+}
+
+model Insight {
+  id          String   @id @default(cuid())
+  dealId      String
+  slideId     String?
+  insightType String // market, competitor, risk, opportunity, moat
+  title       String
+  description String
+  severity    String? // high, medium, low
+  data        Json?
+  createdAt   DateTime @default(now())
+
+  deal  Deal   @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  slide Slide? @relation(fields: [slideId], references: [id], onDelete: Cascade)
+
+  @@index([dealId])
+  @@index([slideId])
+}
+
+model FollowUp {
+  id          String    @id @default(cuid())
+  meetingId   String
+  title       String
+  description String?
+  dueDate     DateTime?
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+
+  @@index([meetingId])
+}
+
+model Email {
+  id         String    @id @default(cuid())
+  meetingId  String
+  type       String // thank_you, follow_up, ic_summary
+  subject    String
+  body       String
+  to         String[]
+  cc         String[]
+  sent       Boolean   @default(false)
+  sentAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+
+  @@index([meetingId])
+}
+
+model MeetingShare {
+  id        String   @id @default(cuid())
+  meetingId String
+  userId    String
+  sharedBy  String
+  createdAt DateTime @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([meetingId, userId])
+  @@index([meetingId])
+  @@index([userId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  meetingId String
+  userId    String
+  text      String
+  timestamp Float? // for time-based comments on transcript/slides
+  createdAt DateTime @default(now())
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([meetingId])
+  @@index([userId])
+}
+
