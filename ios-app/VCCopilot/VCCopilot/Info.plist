@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>VC Copilot needs microphone access to record meeting audio and transcribe conversations in real-time.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>VC Copilot needs camera access to capture slides during the meeting.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>VC Copilot needs photo library access to upload slides from your device.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>VC Copilot needs Bluetooth access to connect to Ray-Ban Meta Gen 2 glasses for audio input/output.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>VC Copilot needs Bluetooth access to connect to Ray-Ban Meta Gen 2 glasses.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>bluetooth-central</string>
+	</array>
+</dict>
+</plist>
+
