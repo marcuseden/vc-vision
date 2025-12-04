@@ -1,4 +1,4 @@
-# VC Copilot - API Contracts for iOS App
+# VC Magic - API Contracts for iOS App
 
 This document defines the API contracts between the iOS companion app and the Next.js backend.
 
@@ -338,7 +338,7 @@ curl -X POST http://localhost:3000/api/slides \
 ## iOS SDK Example (Pseudo-code)
 
 ```swift
-class VCCopilotClient {
+class VCMagicClient {
     let baseURL = "https://your-domain.com"
     let authToken: String
     

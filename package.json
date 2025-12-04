@@ -1,6 +1,7 @@
 {
-  "name": "vc-copilot",
+  "name": "vc-magic",
   "version": "1.0.0",
+  "description": "VC Magic - AI-Powered Deal Intelligence with Ray-Ban Meta Gen 2",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,6 +1,6 @@
-# ⚡ VC Copilot - Quick Start (5 Minutes)
+# ⚡ VC Magic - Quick Start (5 Minutes)
 
-Get your VC Copilot running in 5 minutes!
+Get your VC Magic running in 5 minutes!
 
 ## Prerequisites
 
@@ -166,7 +166,7 @@ pnpm db:generate
 
 ---
 
-**🎉 Congratulations! Your VC Copilot is running!**
+**🎉 Congratulations! Your VC Magic is running!**
 
 Next: Integrate with iOS app using **API_CONTRACTS.md**
 

@@ -1,8 +1,8 @@
-# VC Copilot - System Architecture
+# VC Magic - System Architecture
 
 ## Overview
 
-VC Copilot is a full-stack AI-powered meeting intelligence platform built with Next.js, designed to help venture capital firms make better investment decisions through real-time meeting analysis and automated research.
+VC Magic is a full-stack AI-powered meeting intelligence platform built with Next.js, designed to help venture capital firms make better investment decisions through real-time meeting analysis and automated research.
 
 ## High-Level Architecture
 

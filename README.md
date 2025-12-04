@@ -1,6 +1,6 @@
-# VC Copilot - Internal Deal Intelligence Platform
+# VC Magic 🪄 - AI Deal Intelligence Platform
 
-An AI-powered meeting intelligence system for venture capital firms. Records meetings, analyzes pitch decks, generates smart questions, and produces IC-ready summaries.
+The future of venture capital meetings. AI-powered intelligence system with Ray-Ban Meta Gen 2 integration. Records meetings, analyzes pitch decks in real-time, whispers smart questions through your glasses, and produces IC-ready summaries.
 
 ## 🌟 Features
 
@@ -309,8 +309,8 @@ Set environment variables in Vercel dashboard.
 ### Docker
 
 ```bash
-docker build -t vc-copilot .
-docker run -p 3000:3000 vc-copilot
+docker build -t vc-magic .
+docker run -p 3000:3000 vc-magic
 ```
 
 ## 🤝 Contributing

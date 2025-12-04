@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'VC Copilot - Internal Deal Intelligence',
-  description: 'AI-powered meeting intelligence for venture capital',
+  title: 'VC Magic 🪄 - AI Deal Intelligence',
+  description: 'AI-powered meeting intelligence with Ray-Ban Meta Gen 2 integration for venture capital',
 }
 
 export default function RootLayout({

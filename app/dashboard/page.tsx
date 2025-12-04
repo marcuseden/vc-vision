@@ -91,10 +91,10 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">
-                VC Copilot Dashboard
+                VC Magic 🪄
               </h1>
               <p className="text-gray-600 mt-1">
-                Manage your deal meetings and intelligence
+                AI-Powered Deal Intelligence • Ray-Ban Meta Gen 2
               </p>
             </div>
             <Button size="lg">

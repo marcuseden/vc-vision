@@ -1,4 +1,4 @@
-# VC Copilot iOS App - Development Guide
+# VC Magic iOS App - Development Guide
 
 ## 🎯 Overview
 
@@ -184,8 +184,8 @@ let baseURL = "https://vc-vision.vercel.app"
 ### API Client
 
 ```swift
-class VCCopilotAPI {
-    static let shared = VCCopilotAPI()
+class VCMagicAPI {
+    static let shared = VCMagicAPI()
     private let baseURL = "https://vc-vision.vercel.app"
     
     // Create meeting

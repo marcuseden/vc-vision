@@ -1,6 +1,6 @@
-# VC Copilot - Complete Setup Guide
+# VC Magic - Complete Setup Guide
 
-This guide will walk you through setting up the VC Copilot system from scratch.
+This guide will walk you through setting up the VC Magic system from scratch.
 
 ## Step 1: Prerequisites
 
@@ -60,7 +60,7 @@ Ensure you have the following accounts and tools:
 
 1. Go to [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 2. Click "Create new secret key"
-3. Name it "VC Copilot"
+3. Name it "VC Magic"
 4. Copy the key (starts with `sk-`)
 5. **Important:** Save it immediately, you won't see it again!
 
@@ -356,5 +356,5 @@ If you encounter issues:
 
 ---
 
-🎉 **Congratulations!** Your VC Copilot is ready to use.
+🎉 **Congratulations!** Your VC Magic is ready to use.
 

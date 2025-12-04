@@ -1,0 +1,22 @@
+# Podfile for VCCopilot
+# Meta Wearables SDK for Ray-Ban Meta Gen 2
+
+platform :ios, '17.0'
+use_frameworks!
+
+target 'VCCopilot' do
+  # Meta Wearables SDK (if available via CocoaPods)
+  # Note: Check Meta documentation for current distribution method
+  # May need to use SPM (Swift Package Manager) instead
+  
+  # For now, we'll integrate manually or via SPM
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'
+    end
+  end
+end
+
